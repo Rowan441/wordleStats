@@ -30,19 +30,26 @@ with open('5letterwords.txt') as f:
     
     linesWeight.sort(key=takeSecond, reverse=True)
 
-    print("Best words:")
-    for i in range(min(10, len(lines))):
+    BEST_N_WORDS = 15
+
+    print("Best", BEST_N_WORDS, "words:")
+    for i in range(min(BEST_N_WORDS, len(lines))):
         print(linesWeight[i])
 
-    print("most common letters:")
-    for i, freq in enumerate(letterFreq):
-        print(chr(ord('@')+i+1), ": ", freq[1])
+    print("\nBest word without an S")
+    i = 0
+    while True:
+        if linesWeight[i][0].find("s") == -1:
+            print(linesWeight[i])
+            break
+        if i == len(lines)-1:
+            print("None found")
+            break
+        i += 1
+        
 
     letterFreq.sort(key=takeSecond, reverse=True)
 
-    print("most common letters SORTED:")
+    print("\nMost common letters:")
     for i, freq in enumerate(letterFreq):
         print(freq[0], ": ", freq[1]) 
-
-
-
